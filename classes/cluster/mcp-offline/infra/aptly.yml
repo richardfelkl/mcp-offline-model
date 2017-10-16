@@ -7,7 +7,7 @@ classes:
 - service.docker.host
 - system.docker.client
 - service.docker.registry
-- cluster.mcp-offline-lab.infra
+- cluster.mcp-offline.infra
 parameters:
   _param:
     aptly_gpg_keypair_id: 97E99EA9
