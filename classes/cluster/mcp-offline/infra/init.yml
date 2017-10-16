@@ -17,8 +17,8 @@ parameters:
     infra_config_address: 10.4.0.15
     infra_config_deploy_address: 10.1.0.15
 
-    cluster_domain: mcp-offline-lab.local
-    cluster_name: mcp-offline-lab
+    cluster_domain: mcp-offline.local
+    cluster_name: mcp-offline
 
     control_network_netmask: 255.255.255.0
     tenant_network_netmask: 255.255.255.0
