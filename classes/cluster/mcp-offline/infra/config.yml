@@ -1,0 +1,48 @@
+classes:
+- system.linux.system.repo.mcp.salt
+- system.linux.system.repo.mcp.extra
+- system.linux.system.repo.ubuntu
+- system.openssh.client.lab
+- system.salt.master.pkg
+- system.salt.minion.ca.salt_master
+- system.salt.master.api
+- system.reclass.storage.salt
+- cluster.mcp-offline-lab.infra
+parameters:
+  _param:
+    salt_master_base_environment: prd
+    reclass_data_repository: "https://github.com/richardfelkl/mcp-offline-lab-model.git"
+    reclass_data_revision: master
+    reclass_config_master: ${_param:infra_config_deploy_address}
+    single_address: ${_param:infra_config_address}
+    deploy_address: ${_param:infra_config_deploy_address}
+    linux_system_codename: xenial
+    salt_api_password_hash: "$6$kyyYStvP$ECte5Soh5QF.4RCRuL78uoS7/0aTDU/e3qBXsi/rQSc.TfbBRFUX1qjrvXWBnNGAazll91nBYhdfzoNmZHNx1."
+    salt_master_host: ${_param:infra_config_deploy_address}
+  linux:
+    network:
+      interface:
+        ens3:
+          enabled: true
+          type: eth
+          proto: dhcp
+  salt:
+    master:
+      command_timeout: 600
+      user:
+        deploy:
+          permissions: ${_param:salt_master_api_permissions}
+  reclass:
+    storage:
+      data_source:
+        engine: local
+      node:
+        aptly_server_node01:
+          name: ${_param:aptly_server_hostname}01
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.infra.aptly
+          params:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: xenial
+            single_address: ${_param:aptly_server_address}
