@@ -1,0 +1,86 @@
+classes:
+- system.linux.system.single
+- system.openssh.server.team.cicd
+parameters:
+  _param:
+    # TODO: Uncomment next line "linux_system_user_sudo: true" during the deployment.
+    # Don't set it "false" before you configure sudo policies and enable power users.
+    # linux_system_user_sudo: true
+    docker_compose_image: apt:5000/compose:1.8.0
+    apt_mk_version: stable
+    aptly_server_hostname: apt
+    aptly_server_address: 10.1.0.14
+    linux_repo_refresh_db: true
+    infra_config_hostname: cfg01
+    salt_minion_ca_host: ${_param:infra_config_hostname}.${_param:cluster_domain}
+    # infra service addresses
+    infra_config_address: 10.4.0.15
+    infra_config_deploy_address: 10.1.0.15
+
+    cluster_domain: mcp-offline-lab.local
+    cluster_name: mcp-offline-lab
+
+    control_network_netmask: 255.255.255.0
+    tenant_network_netmask: 255.255.255.0
+
+    dns_server01: 8.8.8.8
+    dns_server02: 8.8.4.4
+
+    deploy_network_netmask: 255.255.0.0
+    deploy_network_gateway: 10.0.0.1
+
+    aptly_gpg_public_key: |
+      -----BEGIN PGP PUBLIC KEY BLOCK-----
+      Version: GnuPG v1
+
+      mQENBFmtOJQBCADQz9rkAd3Xbktncit1DrJHGAygniC5yVIGyWWwg7+0TLgP/ZNj
+      RwpJ2i59/oCSpGlzXWHKd1kIaapUxz9kn7+VdSrtZZgdzgO7EweGL95jbpxz1ECV
+      6ddGs9KezXHRz8RiCtBwYvdN3021hKG7YU70wK8FsuJFWiRjkQ8GZsmA8AACiHFK
+      GQ4CIYDme8nunJwCrcdGauMoamPmTWGGTtbg7Ra85FX/emO7IqLpOjFUV+7SG+2N
+      LCr8kivnpomhI9QFeI2Pa/HKO4XJTMnOs6OTPcwD70Ha3iN3CO/bx5w+wWGbxZwe
+      EAb6vl/+aDcFX3KqtgeUe5vGxPxnjugq5+e7ABEBAAG0H0FwdGx5IE9mZmxpbmUg
+      TGFiIDxhcHRseUBsb2NhbD6JATgEEwECACIFAlmtOJQCGwMGCwkIBwMCBhUIAgkK
+      CwQWAgMBAh4BAheAAAoJEKr0EYOX6Z6pAJ8H/3GEMdKX3L52tXKeojqBvOMKi3wN
+      vlyfUL10KOANIzmpLkeDGq2+q78PfO6bJaeNHAXovOyniw6PId1wtyCVHK/Zr3oV
+      Vt1WpkTqKlUnZ7gwjb8idIQwMV6FGyzuW7QsvQeIWusETC0jOokINmxsrKxhYFnl
+      7zByPkwTavrvGt5Qw5q8yYOzYh/VD1DlmcpcaWF4fCdE9vwM+tFhnI2CONaR+xaq
+      InR6a3Ro7m9kpNk5g+zKQNNU7oZtDIVjvlBUpsysGRDONPB4vzSxJdCGW5uEEWkH
+      N1JjWhAlIfuLlHVnNbHJIYW7pcFT+THedP4thCXbZI9hw2Q988uQ4FvWKWC5AQ0E
+      Wa04lAEIAMjovrpja847GDUcPVh0Ix0V5B/pgU4psSipwI5/ZvSdt2d5EnQJBJoP
+      C3NM0tWcnqJGErgA67fxLSW5y96FB9G6cBiojMllkNajKucPUWveNDq6h6NA90/u
+      u1s3PSUq3moQ2ldJeAaUFDp+5AWwyEASADCopkJahkCRYqyyQHPX/xrKmD1Qwk6P
+      wKxpPO9e7kUOKTpO5sY6U6JxDY95LbeshEAeZzufizigByYa+J2CxBbTK1AUbhdw
+      HmELJCUrf7Jn/mqInlGEbXbyqC2Bk3mgNBU8yEBTO2QgXXflQs/qixS4HBHtc1xi
+      y5fOoFydmTo6I/8bsbObjGu4yrnNxOsAEQEAAYkBHwQYAQIACQUCWa04lAIbDAAK
+      CRCq9BGDl+meqQ2/B/43+fB2VCXsp+ew+atBMTWJRp5Y7bHF5doyZsOUB7yFyOqe
+      3XoZU3XWqyFAQj1DirybjwVwiWOuU45slgM2Rwt8OhH4cKRvG2Sj4jyTILiVKl9E
+      1Ze/hR5UBaXDJHqwbveSJd5CeztFlTJ5bKF2RE1BrHy2Q1XjKaEoe7Ox1YbEQ9y2
+      lil245bwZsP6d4dwEAHKiljPvu/Yy1I1hO+jAg6SDPK5Nh/pghP+s8mTCw8G86wh
+      iv0J4G/p03z/ijTJWSZE4lCZFejy3b85Rq5+5PHC71n6j5AD5khzgI7gtwlu02sC
+      UFStojSYh1YmZiG4HxEy7QDKF/gWr2/aMXcHgQYS
+      =sdaC
+      -----END PGP PUBLIC KEY BLOCK-----
+  salt:
+    minion:
+      trusted_ca_minions:
+        - ${_param:salt_minion_ca_host}
+  linux:
+    network:
+      host:
+        hostname:
+          address: ${_param:single_address}
+          names:
+          - ${linux:network:hostname}
+          - ${linux:network:fqdn}
+        apt:
+          address: ${_param:aptly_server_address}
+          names:
+          - ${_param:aptly_server_hostname}
+          - ${_param:aptly_server_hostname}.${_param:cluster_domain}
+    system:
+      name: ${_param:infra_config_hostname}
+      domain: ${_param:cluster_domain}
+      purge_repos: True
+      service:
+        apt-daily.timer:
+          status: dead
