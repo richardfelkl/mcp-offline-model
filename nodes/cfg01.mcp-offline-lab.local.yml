@@ -1,5 +1,5 @@
 classes:
-- cluster.mcp-offline-lab.infra.config
+- cluster.mcp-offline.infra.config
 parameters:
   _param:
     linux_system_codename: xenial
