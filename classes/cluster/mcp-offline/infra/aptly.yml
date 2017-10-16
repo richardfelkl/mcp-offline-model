@@ -1,0 +1,95 @@
+classes:
+- system.aptly.server.single
+- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.extra
+- system.aptly.server.repo.ubuntu.xenial.extra
+- system.linux.system.repo.docker
+- system.git.server.single
+- service.docker.host
+- system.docker.client
+- service.docker.registry
+- cluster.mcp-offline-lab.infra
+parameters:
+  _param:
+    aptly_gpg_keypair_id: 97E99EA9
+    aptly_gpg_passphrase: cloudlab
+    aptly_server_secure: true
+    aptly_gpg_private_key: none
+    aptly_gpg_public_key: |
+      -----BEGIN PGP PUBLIC KEY BLOCK-----
+      Version: GnuPG v1
+
+      mQENBFnU98YBCACdTxOkxAJJQaQ4B9sEsh9s4MMOMxPSCwvzgGbk6HECDBhz2auF
+      FfVydNbjLfoih8qdaLSmBQg8+FtdYJHEG1lekeiUETOxJnkhUFXq85KGNj9BbGBr
+      m3/6Jo58pdMNdUMurAs807STvH3iTAhYymggX1u9GyjKbv24p2KMGuK1gC3W04NG
+      qOQX3iwjmBWq87fX7tNLafptCq5A9TAv4Dvt1XZgGCiLI+EcPyfgNB1W/+EOOkFu
+      jFdM43nm0YE3Bf4uuVR/u0REprYJfChdS6qYYgI3n2LuPyi9WMVVee+1RZmTwFcB
+      cS53h+gq1GHOhj+YOwm3+ctmIoTNi26siutdABEBAAG0Kk1pcmFudGlzIE9mZmxp
+      bmUgQXB0bHkgPGluZm9AbWlyYW50aXMuY29tPokBOAQTAQIAIgUCWdT3xgIbAwYL
+      CQgHAwIGFQgCCQoLBBYCAwECHgECF4AACgkQpIXB3agnLgS9wQf7B2LiR4wQh7Vq
+      Vwx1dKrhj0AXF7jSYfYJ/vtV6mXb0AxAxC3BVoW+KLPB+W9lHCXBRYXf1pJZIYcx
+      v0rTGeqzpcxVmMIT1E4OAmZp8pFlBsFNTERG2z01kdnd3oddF3GSiP1cTg2+c9hJ
+      UGJR0tAbPXDm0dXhuDD428IuSx5o4bdNdCshPYRe/P3CGG+KrySLL0/06UU2I5Mx
+      f4pctRouWfrQDA6sIS+P58NKwIpXdWj1pPogJzVUJqHHyAUM8Ri+AZoXtKjqXAqN
+      QNCd/xPaL9dtGxKTMDDKHvqyF5MpU3eYcEFIi79nunfC6Iaw+Izo+hYpiBlb2s6Q
+      kCgR2y/f17kBDQRZ1PfGAQgA1NqQorh2cvogoU4DbRwnQKZDCCt4WnbvcJf8WZw7
+      sINbqJm3pd/UjVwcPG0GFe9w7/eEdKv6N/fVMJYo/Dj34j2waN46sIBBaXi8pPuC
+      rs/fV+KFGmdXNrOED8LeJ835+6eAm3W/930P1o/Rncfi7ANQr4nuSkzCoXhwo9n8
+      RX70L1pYtGw1v3qMaDBKHGpZ0ZqSewSlQYclWG5EKg6ecR0wnLK9W62b5uExbexh
+      7d+W22NTZ9j7SVfwHG4IleZ03B+ak0NqlKpdEA9+8QLdrQsqFN8qDHqJ46ag+5xt
+      pAPmw1S2va7Gkr0BMxzdxwA5d4ZauevaEKTi5NLGdNZuHQARAQABiQEfBBgBAgAJ
+      BQJZ1PfGAhsMAAoJEKSFwd2oJy4E5R4H/3XjYvsalh2g4iYEOjZ1Ld55AA+NDlnp
+      eXJfEOlhxdnAvkTc1CfKdT3qaN5hG0m7sVowaeVbf4cDNwIQy+R75V73h2DQpno3
+      746DDC0C2jRzDBwKrUU9Y/du3REcq4kMCnhtVBMSX6rbJoxSFdCzLu/XJd9oeXbb
+      kObIeoe9FWIrswFB4NUhTHLn1bk5p8zsVbsRm3jl6ofoQmFKFoK6FauuNeB+Fc/1
+      UdMpUb1Y9dpE/akgRm/79NRHKA4plQ2X/CGZu+KIw4XVn/0ilU8FbsX+KXcp8ui0
+      XRqg8z44wtlroFTrnR+DgqplsellsrM+xGtZb9VrjFLeP89jzhrBWgE=
+      =GLje
+  docker:
+    client:
+      registry:
+        target_registry: apt:5000
+        image:
+          - name: registry:2
+            registry: ""
+    host:
+      insecure_registries:
+        - apt:5000
+    registry:
+      bind:
+        host: 0.0.0.0
+        port: 5000
+  git:
+    server:
+       directory: /srv/git/
+       repos:
+        - name: gerritlib
+          url: https://github.com/openstack-infra/gerritlib.git
+        - name: jeepyb
+          url: https://github.com/openstack-infra/jeepyb.git
+  nginx:
+    server:
+      site:
+        pip_server:
+          enabled: true
+          type: nginx_static
+          name: pip_server
+          root: /srv/pypi_mirror/packages/simple
+          autoindex: True
+          access_policy:
+            allow:
+            - all
+          host:
+            name: pipy.mcp-offline-lab.local
+            port: 8084
+        http_server:
+          enabled: true
+          type: nginx_static
+          name: http_server
+          root: /srv/http
+          autoindex: True
+          access_policy:
+            allow:
+            - all
+          host:
+            name: http.mcp-offline-lab.local
+            port: 8078
