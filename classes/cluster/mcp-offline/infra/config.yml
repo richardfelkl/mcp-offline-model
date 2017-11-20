@@ -32,6 +32,9 @@ parameters:
       user:
         deploy:
           permissions: ${_param:salt_master_api_permissions}
+    minion:
+      master:
+        host: "localhost"
   reclass:
     storage:
       data_source:
