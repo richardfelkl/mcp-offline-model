@@ -11,7 +11,7 @@ parameters:
     aptly_server_hostname: apt
     aptly_server_address: 10.1.0.14
     linux_repo_refresh_db: true
-    infra_config_hostname: cfg01
+    infra_config_hostname: apt01
     salt_minion_ca_host: ${_param:infra_config_hostname}.${_param:cluster_domain}
     # infra service addresses
     infra_config_address: 10.4.0.15

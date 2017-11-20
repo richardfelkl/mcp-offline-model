@@ -17,7 +17,7 @@ parameters:
     single_address: ${_param:infra_config_address}
     deploy_address: ${_param:infra_config_deploy_address}
     linux_system_codename: xenial
-    salt_api_password_hash: "$6$kyyYStvP$ECte5Soh5QF.4RCRuL78uoS7/0aTDU/e3qBXsi/rQSc.TfbBRFUX1qjrvXWBnNGAazll91nBYhdfzoNmZHNx1."
+    salt_api_password_hash: "$6$YJog182m$2/VdfO/XQWrVbkQvh3Q3jSp941xQZOROdk6iJb2TfXkoMEi/Uu10sRqky7V3wHf7AYzMoAnr3hQyMC0esNMIn0"
     salt_master_host: ${_param:infra_config_deploy_address}
   linux:
     network:
@@ -39,13 +39,3 @@ parameters:
     storage:
       data_source:
         engine: local
-      node:
-        aptly_server_node01:
-          name: ${_param:aptly_server_hostname}01
-          domain: ${_param:cluster_domain}
-          classes:
-          - cluster.${_param:cluster_name}.infra.aptly
-          params:
-            salt_master_host: ${_param:reclass_config_master}
-            linux_system_codename: xenial
-            single_address: ${_param:aptly_server_address}

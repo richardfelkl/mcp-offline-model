@@ -1,10 +1,11 @@
 classes:
 - cluster.mcp-offline.infra.config
+- cluster.mcp-offline.infra.aptly
 parameters:
   _param:
     linux_system_codename: xenial
     reclass_data_revision: master
   linux:
     system:
-      name: cfg01
+      name: apt01
       domain: mcp-offline.local
