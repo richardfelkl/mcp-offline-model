@@ -3,6 +3,7 @@ classes:
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.extra
 - system.aptly.server.repo.ubuntu.xenial.extra
 - system.linux.system.repo.docker
+- system.linux.system.repo.docker_legacy
 - system.git.server.single
 - service.docker.host
 - system.docker.client
@@ -101,6 +102,10 @@ parameters:
       UdMpUb1Y9dpE/akgRm/79NRHKA4plQ2X/CGZu+KIw4XVn/0ilU8FbsX+KXcp8ui0
       XRqg8z44wtlroFTrnR+DgqplsellsrM+xGtZb9VrjFLeP89jzhrBWgE=
       =GLje
+  aptly:
+    server:
+      mirror_update:
+        enabled: False
   docker:
     client:
       registry:
@@ -111,10 +116,6 @@ parameters:
     host:
       insecure_registries:
         - apt:5000
-    registry:
-      bind:
-        host: 0.0.0.0
-        port: 5000
   git:
     server:
        directory: /srv/git/
@@ -150,3 +151,27 @@ parameters:
           host:
             name: http.mcp-offline-lab.local
             port: 8078
+  linux:
+    system:
+      profile:
+        locales: |
+          export LC_ALL=C
+      repo:
+        aptly:
+          source: "deb http://ftp.cz.debian.org/debian sid main"
+          architectures: amd64
+          key_id: 7638D0442B90D010
+          key_server: keys.gnupg.net
+          pin:
+          - pin: 'origin "ftp.cz.debian.org"'
+            priority: 100
+            package: '*'
+          - pin: 'origin "ftp.cz.debian.org"'
+            priority: 500
+            package: 'aptly-publisher'
+    network:
+      host:
+        apt:
+          address: 127.0.0.1
+          names:
+          - apt
