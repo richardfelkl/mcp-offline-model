@@ -156,6 +156,22 @@ parameters:
       profile:
         locales: |
           export LC_ALL=C
+      directory:
+        /srv/http/images:
+          user: root
+          group: root
+          mode: 755
+          makedirs: true
+        /srv/scripts/:
+          user: root
+          group: root
+          mode: 755
+          makedirs: true
+        /srv/pypi_mirror/packages/:
+          user: root
+          group: root
+          mode: 755
+          makedirs: true
       repo:
         aptly:
           source: "deb http://ftp.cz.debian.org/debian sid main"
