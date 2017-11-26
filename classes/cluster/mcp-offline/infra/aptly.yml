@@ -107,15 +107,18 @@ parameters:
       mirror_update:
         enabled: False
   docker:
+    host:
+      insecure_registries:
+        - apt:5000
+      options:
+        bip: 10.99.0.1/16
+        fixed-cidr: 10.99.0.1/17
     client:
       registry:
         target_registry: apt:5000
         image:
           - name: registry:2
             registry: ""
-    host:
-      insecure_registries:
-        - apt:5000
   git:
     server:
        directory: /srv/git/
