@@ -149,8 +149,8 @@ parameters:
         image:
           - registry: ""
             name: registry:2
-          - registry: docker
-            name: compose
+          #- registry: docker
+          #  name: compose
           - registry: osixia
             name: openldap:1.1.8
           - registry: tcpcloud
