@@ -33,6 +33,7 @@ classes:
 - system.aptly.server.repo.ubuntu.xenial.extra
 - system.aptly.server.repo.ubuntu.xenial.openstack
 - system.aptly.server.repo.ubuntu.xenial.salt
+- system.linux.system.repo.aptly
 - system.linux.system.repo.docker_legacy
 - system.git.server.single
 - service.docker.host
@@ -149,8 +150,8 @@ parameters:
         image:
           - registry: ""
             name: registry:2
-          #- registry: docker
-          #  name: compose
+          - registry: docker
+            name: compose:1.17.1
           - registry: osixia
             name: openldap:1.1.8
           - registry: tcpcloud
@@ -270,7 +271,7 @@ parameters:
           mode: 755
           makedirs: true
       repo:
-        aptly:
+        debian_sid:
           source: "deb http://ftp.cz.debian.org/debian sid main"
           architectures: amd64
           key_id: 7638D0442B90D010
