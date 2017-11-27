@@ -145,8 +145,72 @@ parameters:
       registry:
         target_registry: apt:5000
         image:
-          - name: registry:2
-            registry: ""
+          - registry: ""
+            name: registry:2
+          - registry: docker
+            name: compose
+          - registry: osixia
+            name: openldap:1.1.8
+          - registry: tcpcloud
+            name: aptly:latest
+          - registry: tcpcloud
+            name: aptly-public:latest
+          - registry: tcpcloud
+            name: aptly-api:latest
+          - registry: tcpcloud
+            name: aptly-publisher:latest
+          - registry: tcpcloud
+            name: jnlp-slave:latest
+          - registry: tcpcloud
+            name: phpldapadmin:0.6.12
+          - registry: tcpcloud
+            name: jenkins:2.73
+          - registry: tcpcloud
+            name: gerrit:2.13.6
+          - registry: tcpcloud
+            name: mysql:5.6
+          - registry: grafana
+            name: grafana:4.5.2
+          - registry: docker-prod-local.artifactory.mirantis.com/openstack-docker
+            name: heka:latest
+          - registry: dockersamples
+            name: visualizer:latest
+          - registry: docker-prod-local.artifactory.mirantis.com/mirantis/oss
+            name: security-monkey-api:latest
+          - registry: docker.elastic.co/elasticsearch
+            name: elasticsearch:5.4.1
+          - registry: docker-prod-local.artifactory.mirantis.com/mirantis/oss
+            name: security-monkey-scheduler:latest
+          - registry: docker-prod-local.artifactory.mirantis.com/mirantis/oss
+            name: janitor-monkey:latest
+          - registry: library
+            name: mongo:3.4
+          - registry: docker-prod-local.artifactory.mirantis.com/mirantis/oss
+            name: rundeck:latest
+          - registry: docker-prod-local.artifactory.mirantis.com/mirantis/oss
+            name: devops-portal:latest
+          - registry: library
+            name: postgres:9.6
+          - registry: docker-prod-local.artifactory.mirantis.com/mirantis/oss
+            name: pushkin:latest
+          - registry: docker-prod-local.artifactory.mirantis.com/openstack-docker
+            name: alertmanager:latest
+          - registry: docker-prod-local.artifactory.mirantis.com/openstack-docker
+            name: pushgateway:latest
+          - registry: docker-prod-local.artifactory.mirantis.com/openstack-docker
+            name: prometheus:latest
+          - registry: docker-prod-local.artifactory.mirantis.com/openstack-docker
+            name: telegraf:latest
+          - registry: docker-prod-local.artifactory.mirantis.com/openstack-docker
+            name: remote_storage_adapter:latest
+          - registry: docker-prod-local.artifactory.mirantis.com/openstack-docker
+            name: prometheus_relay:latest
+          - registry: docker-prod-local.artifactory.mirantis.com/mirantis/kubernetes/contrail-integration
+            name: contrail-cni:v1.0.0
+          - registry: docker-prod-local.artifactory.mirantis.com/mirantis/kubernetes/contrail-integration
+            name: contrail-network-controller:v1.0.0
+          - registry: docker-prod-local.artifactory.mirantis.com/mirantis/kubernetes
+            name: hyperkube-amd64:v1.6.2-2
   git:
     server:
        directory: /srv/git/
