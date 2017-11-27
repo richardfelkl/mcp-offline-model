@@ -6,6 +6,7 @@ classes:
 - system.aptly.server.mirror.ubuntu.trusty.mcp.apt_mk.mitaka
 - system.aptly.server.mirror.ubuntu.trusty.mcp.apt_mk.oc323
 - system.aptly.server.mirror.ubuntu.trusty.mcp.openstack_mitaka
+- system.aptly.server.mirror.ubuntu.trusty.ceph
 - system.aptly.server.mirror.ubuntu.trusty.grafana
 - system.aptly.server.mirror.ubuntu.trusty.haproxy
 - system.aptly.server.mirror.ubuntu.trusty.rabbitmq
@@ -21,6 +22,7 @@ classes:
 - system.aptly.server.mirror.ubuntu.xenial.glusterfs
 - system.aptly.server.mirror.ubuntu.xenial.maas
 - system.aptly.server.mirror.ubuntu.xenial.docker
+- system.aptly.server.mirror.ubuntu.xenial.ceph
 - system.aptly.server.mirror.ubuntu.xenial.grafana
 #- system.aptly.server.mirror.ubuntu.xenial.ubuntu
 - system.aptly.server.mirror.ubuntu.xenial.salt
