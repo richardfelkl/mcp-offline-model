@@ -7,6 +7,8 @@ classes:
 - system.aptly.server.mirror.ubuntu.trusty.mcp.apt_mk.oc323
 - system.aptly.server.mirror.ubuntu.trusty.mcp.openstack_mitaka
 - system.aptly.server.mirror.ubuntu.trusty.ceph
+- system.aptly.server.mirror.ubuntu.trusty.docker
+- system.aptly.server.mirror.ubuntu.trusty.docker_legacy
 - system.aptly.server.mirror.ubuntu.trusty.grafana
 - system.aptly.server.mirror.ubuntu.trusty.haproxy
 - system.aptly.server.mirror.ubuntu.trusty.rabbitmq
@@ -22,6 +24,7 @@ classes:
 - system.aptly.server.mirror.ubuntu.xenial.glusterfs
 - system.aptly.server.mirror.ubuntu.xenial.maas
 - system.aptly.server.mirror.ubuntu.xenial.docker
+- system.aptly.server.mirror.ubuntu.xenial.docker_legacy
 - system.aptly.server.mirror.ubuntu.xenial.ceph
 - system.aptly.server.mirror.ubuntu.xenial.grafana
 #- system.aptly.server.mirror.ubuntu.xenial.ubuntu
@@ -222,6 +225,10 @@ parameters:
           url: https://github.com/openstack-infra/gerritlib.git
         - name: jeepyb
           url: https://github.com/openstack-infra/jeepyb.git
+        - name: mk-pipelines
+          url: https://github.com/Mirantis/mk-pipelines
+        - name: pipeline-library
+          url: https://github.com/Mirantis/pipeline-library
   nginx:
     server:
       site:
