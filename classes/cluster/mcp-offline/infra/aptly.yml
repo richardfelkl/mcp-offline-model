@@ -290,6 +290,9 @@ parameters:
           - pin: 'origin "ftp.cz.debian.org"'
             priority: 500
             package: 'aptly-publisher'
+      package:
+        cloud-init:
+          version: latest
     network:
       host:
         apt:
