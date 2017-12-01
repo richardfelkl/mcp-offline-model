@@ -217,6 +217,38 @@ parameters:
             name: contrail-network-controller:v1.0.0
           - registry: docker-prod-local.artifactory.mirantis.com/mirantis/kubernetes
             name: hyperkube-amd64:v1.6.2-2
+          - registry: kubernetes
+            name: pause:latest
+          - registry: mirantis
+            name: virtlet:latest
+          - registry: gcr.io/google_containers
+            name: kubernetes-dashboard-amd64:v1.5.1
+          - registry: gcr.io/google_containers
+            name: k8s-dns-kube-dns-amd64:1.14.5
+          - registry: gcr.io/google_containers
+            name: k8s-dns-dnsmasq-amd64:1.14.5
+          - registry: gcr.io/google_containers
+            name: k8s-dns-sidecar-amd64:1.14.5
+          - registry: gcr.io/google_containers
+            name: cluster-proportional-autoscaler-amd64:1.0.0
+          - registry: mirantis
+            name: k8s-netchecker-agent:stable
+          - registry: mirantis
+            name: k8s-netchecker-server:stable
+          - registry: quay.io/coreos
+            name: etcd
+          - registry: quay.io/coreos
+            name: etcd-operator:v0.5.2
+          - registry: gcr.io/kubernetes-helm
+            name: tiller:v2.4.2
+          - registry: docker-prod-virtual.docker.mirantis.net/mirantis/projectcalico/calico
+            name: ctl:latest
+          - registry: docker-prod-virtual.docker.mirantis.net/mirantis/projectcalico/calico
+            name: node:latest
+          - registry: docker-prod-virtual.docker.mirantis.net/mirantis/projectcalico/calico
+            name: cni:latest
+          - registry: calico
+            name: kube-policy-controller:v0.5.4
   git:
     server:
        directory: /srv/git/
@@ -226,9 +258,11 @@ parameters:
         - name: jeepyb
           url: https://github.com/openstack-infra/jeepyb.git
         - name: mk-pipelines
-          url: https://github.com/Mirantis/mk-pipelines
+          url: https://github.com/Mirantis/mk-pipelines.git
         - name: pipeline-library
-          url: https://github.com/Mirantis/pipeline-library
+          url: https://github.com/Mirantis/pipeline-library.git
+        - name: rundeck-cis-jobs
+          url: https://github.com/Mirantis/rundeck-cis-jobs.git
   nginx:
     server:
       site:
