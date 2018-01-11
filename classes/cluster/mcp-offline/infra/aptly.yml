@@ -6,11 +6,10 @@ classes:
 - system.aptly.server.mirror.ubuntu.trusty.mcp.apt_mk.mitaka
 - system.aptly.server.mirror.ubuntu.trusty.mcp.apt_mk.oc323
 - system.aptly.server.mirror.ubuntu.trusty.mcp.apt_mk.openstack.mitaka
-#- system.aptly.server.mirror.ubuntu.trusty.mcp.apt_mk.grafana
 - system.aptly.server.mirror.ubuntu.trusty.mcp.apt_mk.saltstack.salt-2016-3
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.aptly
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.elastic
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.kibana
+- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.kibana.46
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.openstack.ocata
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.openstack.mitaka
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.salt
@@ -21,7 +20,7 @@ classes:
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.glusterfs
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.maas
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.docker
-- system.aptly.server.mirror.ubuntu.xenial.docker_legacy
+- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.docker-legacy
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.ceph
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.grafana
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.saltstack.salt-2016-3
@@ -130,6 +129,137 @@ parameters:
     server:
       mirror_update:
         enabled: False
+      mirror:
+        mcp_opencontrail_trusty_oc323:
+          publisher:
+            distributions:
+            - ubuntu-trusty/stable
+        mcp_opencontrail_xenial_oc323:
+          publisher:
+            distributions:
+            - ubuntu-xenial/stable
+        mirantis_openstack_mitaka_holdback_xenial:
+          publisher:
+            distributions:
+            - ubuntu-xenial/openstack/mitaka/holdback/stable
+        mirantis_openstack_mitaka_hotfix_xenial:
+          publisher:
+            distributions:
+            - ubuntu-xenial/openstack/mitaka/hotfix/stable
+        mirantis_openstack_mitaka_security_xenial:
+          publisher:
+            distributions:
+            - ubuntu-xenial/openstack/mitaka/security/stable
+        mirantis_openstack_mitaka_updates_xenial:
+          publisher:
+            distributions:
+            - ubuntu-xenial/openstack/mitaka/updates/stable
+        mirantis_openstack_mitaka_xenial:
+          publisher:
+            distributions:
+            - ubuntu-xenial/openstack/mitaka/stable
+        mirantis_openstack_ocata_holdback_xenial:
+          publisher:
+            distributions:
+            - ubuntu-xenial/openstack/ocata/holdback/stable
+        mirantis_openstack_ocata_hotfix_xenial:
+          publisher:
+            distributions:
+            - ubuntu-xenial/openstack/ocata/hotfix/stable
+        mirantis_openstack_ocata_security_xenial:
+          publisher:
+            distributions:
+            - ubuntu-xenial/openstack/ocata/security/stable
+        mirantis_openstack_ocata_updates_xenial:
+          publisher:
+            distributions:
+            - ubuntu-xenial/openstack/ocata/updates/stable
+        mirantis_openstack_ocata_xenial:
+          publisher:
+            distributions:
+            - ubuntu-xenial/openstack/ocata/stable
+        mirantis_openstack_trusty_cassandra:
+          publisher:
+            distributions:
+            - ubuntu-trusty/cassandra/stable/
+        mirantis_openstack_trusty_extra:
+          publisher:
+            distributions:
+            - ubuntu-trusty/stable
+        mirantis_openstack_trusty_salt:
+          publisher:
+            distributions:
+            - ubuntu-trusty/stable
+        mirantis_openstack_xenial_aptly:
+          publisher:
+            distributions:
+            - ubuntu-xenial/aptly/stable
+        mirantis_openstack_xenial_ceph:
+          publisher:
+            distributions:
+            - ubuntu-xenial/ceph/stable
+        mirantis_openstack_xenial_docker:
+          publisher:
+            distributions:
+            - ubuntu-xenial/docker/stable
+        mirantis_openstack_xenial_docker_legacy:
+          publisher:
+            distributions:
+              - ubuntu-xenial/docker/stable
+        mirantis_openstack_xenial_elastic_2x:
+          publisher:
+            distributions:
+            - ubuntu-xenial/elastic/2.x/stable
+        mirantis_openstack_xenial_elastic_5x:
+          publisher:
+            distributions:
+            - ubuntu-xenial/elastic/5.x/stable
+            - ubuntu-xenial/kibana/5.x/${_param:apt_mk_version}
+            - ubuntu-xenial/kibana/5.x/stable
+        mirantis_openstack_xenial_extra:
+          publisher:
+            distributions:
+            - ubuntu-xenial/stable
+        mirantis_openstack_xenial_glusterfs:
+          publisher:
+            distributions:
+            - ubuntu-xenial/glusterfs/stable
+        mirantis_openstack_xenial_grafana:
+          publisher:
+            distributions:
+            - ubuntu-xenial/grafana/stable
+        mirantis_openstack_xenial_influxdb:
+          publisher:
+            distributions:
+            - ubuntu-xenial/influxdb/stable
+        mirantis_openstack_xenial_kibana_46:
+          publisher:
+            distributions:
+            - ubuntu-xenial/kibana/4.6/stable
+        mirantis_openstack_xenial_maas:
+          publisher:
+            distributions:
+            - ubuntu-xenial/maas/stable
+        mirantis_openstack_xenial_salt:
+          publisher:
+            distributions:
+            - ubuntu-xenial/stable
+        mirantis_openstack_xenial_saltstack_2016_3:
+          publisher:
+            distributions:
+            - ubuntu-xenial/salt/2016.3/stable
+        mirantis_openstack_trusty_saltstack_2016_3:
+          publisher:
+            distributions:
+            - ubuntu-trusty/salt/2016.3/stable
+        mk_openstack_xenial_mitaka:
+          publisher:
+            distributions:
+            - ubuntu-trusty/stable
+        mk_openstack_xenial_ocata:
+          publisher:
+            distributions:
+            - ubuntu-xenial/stable
   docker:
     host:
       insecure_registries:
