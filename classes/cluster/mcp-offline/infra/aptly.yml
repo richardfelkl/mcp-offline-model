@@ -451,6 +451,8 @@ parameters:
       package:
         cloud-init:
           version: latest
+        debmirror:
+          version: latest
     network:
       host:
         apt:
