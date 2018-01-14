@@ -8,6 +8,7 @@ classes:
 - system.aptly.server.mirror.ubuntu.trusty.mcp.apt_mk.openstack.mitaka
 - system.aptly.server.mirror.ubuntu.trusty.mcp.apt_mk.saltstack.salt-2016-3
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.aptly
+- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.cassandra
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.elastic
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.kibana.46
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.openstack.ocata
@@ -181,8 +182,11 @@ parameters:
         mirantis_openstack_trusty_cassandra:
           publisher:
             distributions:
-            - ubuntu-trusty/cassandra/${_param:apt_mk_version}
             - ubuntu-trusty/cassandra/stable
+        mirantis_openstack_xenial_cassandra:
+          publisher:
+            distributions:
+            - ubuntu-xenial/cassandra/stable
         mirantis_openstack_trusty_extra:
           publisher:
             distributions:
@@ -371,6 +375,8 @@ parameters:
             name: cni:${_param:apt_mk_version}
           - registry: docker-prod-local.artifactory.mirantis.com/mirantis/external
             name: kube-policy-controller:${_param:apt_mk_version}
+          - registry: docker-prod-local.artifactory.mirantis.com/mirantis/external
+            name: external-dns:${_param:apt_mk_version}
           - registry: docker-prod-local.artifactory.mirantis.com/mirantis/oss
             name: qa-tools:${_param:apt_mk_version}
   git:
