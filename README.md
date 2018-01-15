@@ -1,1 +1,0 @@
-# mcp-offline-model

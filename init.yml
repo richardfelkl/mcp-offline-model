@@ -31,7 +31,6 @@ classes:
 - service.docker.host
 - system.docker.client
 - service.docker.registry
-- cluster.mcp-offline.infra
 parameters:
   _param:
     apt_mk_version: '2017.12'
@@ -441,19 +440,6 @@ parameters:
           group: root
           mode: 755
           makedirs: true
-      repo:
-        debian_sid:
-          source: "deb http://ftp.cz.debian.org/debian sid main"
-          architectures: amd64
-          key_id: 7638D0442B90D010
-          key_server: keys.gnupg.net
-          pin:
-          - pin: 'origin "ftp.cz.debian.org"'
-            priority: 100
-            package: '*'
-          - pin: 'origin "ftp.cz.debian.org"'
-            priority: 500
-            package: 'aptly-publisher'
       package:
         cloud-init:
           version: latest
