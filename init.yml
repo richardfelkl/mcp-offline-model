@@ -11,8 +11,9 @@ classes:
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.cassandra
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.elastic
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.kibana.46
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.openstack.ocata
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.openstack.mitaka
+- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.openstack.ocata
+- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.openstack.pike
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.salt
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.extra
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.ocata
@@ -31,7 +32,7 @@ classes:
 - service.docker.registry
 parameters:
   _param:
-    apt_mk_version: '2017.12'
+    apt_mk_version: '2018.1'
     aptly_gpg_keypair_id: A8272E04
     aptly_gpg_passphrase: ""
     aptly_server_secure: true
@@ -176,6 +177,10 @@ parameters:
           publisher:
             distributions:
             - ubuntu-xenial/openstack/ocata/stable
+        mirantis_openstack_pike_xenial:
+          publisher:
+            distributions:
+            - ubuntu-xenial/openstack/pike/stable
         mirantis_openstack_trusty_cassandra:
           publisher:
             distributions:
