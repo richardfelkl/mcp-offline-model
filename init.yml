@@ -33,6 +33,8 @@ classes:
 parameters:
   _param:
     apt_mk_version: '2018.1'
+    mirror_mirantis_openstack_xenial_docker_legacy_gpgkeys:
+      - 58118E89F3A912897C070ADBF76221572C52609D
     aptly_gpg_keypair_id: A8272E04
     aptly_gpg_passphrase: ""
     aptly_server_secure: true
@@ -214,8 +216,6 @@ parameters:
           distribution: ubuntu-xenial
           components: main
           architectures: amd64
-          gpgkeys:
-            - 58118E89F3A912897C070ADBF76221572C52609D
           publisher:
             distributions:
               - ubuntu-xenial/docker/stable
