@@ -84,3 +84,6 @@ parameters:
       service:
         apt-daily.timer:
           status: dead
+      user:
+        root:
+          password: false
