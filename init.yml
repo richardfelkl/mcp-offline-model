@@ -430,6 +430,22 @@ parameters:
             port: 8078
   linux:
     system:
+      file:
+        /root/interfaces:
+          source: https://raw.githubusercontent.com/Mirantis/mcp-common-scripts/${_param:apt_mk_version}/mirror-image/config/interfaces
+        /root/minion.conf:
+          source: https://raw.githubusercontent.com/Mirantis/mcp-common-scripts/${_param:apt_mk_version}/mirror-image/config/minion.conf
+        /srv/scripts/debmirror.sh:
+          source: https://raw.githubusercontent.com/Mirantis/mcp-common-scripts/${_param:apt_mk_version}/mirror-image/debmirror.sh
+          mode: 755
+        /srv/http/images/ubuntu-16-04-x64-mcp2018.1.qcow2:
+          source: http://ci.mcp.mirantis.net:8085/images/ubuntu-16-04-x64-mcp${_param:apt_mk_version}.qcow2
+        /srv/http/images/ubuntu-16-04-x64-mcp2018.1.qcow2.md5:
+          source: http://ci.mcp.mirantis.net:8085/images/ubuntu-16-04-x64-mcp${_param:apt_mk_version}.qcow2.md5
+        /srv/http/images/ubuntu-14-04-x64-mcp2018.1.qcow2:
+          source: http://ci.mcp.mirantis.net:8085/images/ubuntu-14-04-x64-mcp${_param:apt_mk_version}.qcow2
+        /srv/http/images/ubuntu-14-04-x64-mcp2018.1.qcow2.md5:
+          source: http://ci.mcp.mirantis.net:8085/images/ubuntu-14-04-x64-mcp${_param:apt_mk_version}.qcow2.md5
       profile:
         locales: |
           export LC_ALL=C
