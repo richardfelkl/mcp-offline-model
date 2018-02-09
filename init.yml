@@ -126,6 +126,7 @@ parameters:
       UdMpUb1Y9dpE/akgRm/79NRHKA4plQ2X/CGZu+KIw4XVn/0ilU8FbsX+KXcp8ui0
       XRqg8z44wtlroFTrnR+DgqplsellsrM+xGtZb9VrjFLeP89jzhrBWgE=
       =GLje
+      -----END PGP PUBLIC KEY BLOCK-----
   aptly:
     server:
       mirror_update:
@@ -212,7 +213,7 @@ parameters:
             distributions:
             - ubuntu-xenial/docker/stable
         mirantis_openstack_xenial_docker_legacy:
-          source: https://mirror.mirantis.com/${_param:apt_mk_version}/docker-1.x/
+          source: http://mirror.mirantis.com/${_param:apt_mk_version}/docker-1.x/
           distribution: ubuntu-xenial
           components: main
           architectures: amd64
