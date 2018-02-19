@@ -1,3 +1,6 @@
 [submodule "classes/system"]
 	path = classes/system
 	url = https://github.com/Mirantis/reclass-system-salt-model.git
+[submodule "classes/cluster/mcp-offline/infra/mirror"]
+	path = classes/cluster/mcp-offline/infra/mirror
+	url = https://github.com/Mirantis/mcp-local-repo-model
