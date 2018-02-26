@@ -1,5 +1,5 @@
 classes:
-- system.linux.system.single
+- system.linux.system.single.debian
 - system.openssh.server.team.cicd
 parameters:
   _param:
@@ -13,6 +13,9 @@ parameters:
     linux_repo_refresh_db: true
     infra_config_hostname: apt01
     salt_minion_ca_host: ${_param:infra_config_hostname}.${_param:cluster_domain}
+    # for docker-swarm
+    cluster_node01_address: ${_param:aptly_server_address}
+    admin_email: root@localhost
     # infra service addresses
     infra_config_address: 10.4.0.15
     infra_config_deploy_address: 10.1.0.15
