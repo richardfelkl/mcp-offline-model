@@ -10,6 +10,7 @@ classes:
 - cluster.mcp-offline.infra
 - system.linux.system.repo.docker_legacy
 - cluster.mcp-offline.infra.mirror
+- cluster.mcp-offline.infra.mirror.docker-registry
 
 parameters:
   _param:
