@@ -1,14 +1,14 @@
 classes:
 - system.linux.system.repo.mcp.salt
 - system.linux.system.repo.mcp.extra
-- system.linux.system.repo.ubuntu
+- system.linux.system.repo.mcp.apt_mirantis.ubuntu
+- system.linux.system.repo.mcp.apt_mirantis.docker_legacy
 - system.openssh.client.lab
 - system.salt.master.pkg
 - system.salt.minion.ca.salt_master
 - system.salt.master.api
 - system.reclass.storage.salt
 - cluster.mcp-offline.infra
-- system.linux.system.repo.docker_legacy
 - cluster.mcp-offline.infra.mirror
 - cluster.mcp-offline.infra.mirror.docker-registry
 
