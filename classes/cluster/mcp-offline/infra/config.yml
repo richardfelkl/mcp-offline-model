@@ -1,4 +1,5 @@
 classes:
+- system.linux.system.single.debian
 - system.linux.system.repo.mcp.salt
 - system.linux.system.repo.mcp.extra
 - system.linux.system.repo.mcp.apt_mirantis.ubuntu
@@ -8,28 +9,52 @@ classes:
 - system.salt.minion.ca.salt_master
 - system.salt.master.api
 - system.reclass.storage.salt
-- cluster.mcp-offline.infra
 - cluster.mcp-offline.infra.mirror
 - cluster.mcp-offline.infra.mirror.docker-registry
 
 parameters:
   _param:
+    apt_mk_version: "2018.3.1"
+    aptly_server_hostname: apt
+    linux_repo_refresh_db: true
+    salt_minion_ca_host: ${_param:aptly_server_hostname}.${_param:cluster_domain}
+    cluster_node01_address: ${_param:aptly_server_address}
+    admin_email: root@localhost
+    cluster_domain: mcp-offline.local
+    cluster_name: mcp-offline
     salt_master_base_environment: prd
     reclass_data_repository: "https://github.com/Mirantis/mcp-offline-model.git"
     reclass_data_revision: master
-    reclass_config_master: ${_param:infra_config_deploy_address}
-    single_address: ${_param:infra_config_address}
-    deploy_address: ${_param:infra_config_deploy_address}
     linux_system_codename: xenial
     salt_api_password_hash: "$6$YJog182m$2/VdfO/XQWrVbkQvh3Q3jSp941xQZOROdk6iJb2TfXkoMEi/Uu10sRqky7V3wHf7AYzMoAnr3hQyMC0esNMIn0"
-    salt_master_host: ${_param:infra_config_deploy_address}
   linux:
+    system:
+      name: ${_param:aptly_server_hostname}
+      domain: ${_param:cluster_domain}
+      purge_repos: True
+      service:
+        apt-daily.timer:
+          status: dead
+      user:
+        root:
+          password: false
     network:
       interface:
         ens3:
           enabled: true
           type: eth
           proto: dhcp
+      host:
+        hostname:
+          address: ${_param:single_address}
+          names:
+          - ${linux:network:hostname}
+          - ${linux:network:fqdn}
+        apt:
+          address: 127.0.0.1
+          names:
+          - ${_param:aptly_server_hostname}
+          - ${_param:aptly_server_hostname}.${_param:cluster_domain}
   salt:
     master:
       command_timeout: 600
@@ -39,6 +64,8 @@ parameters:
     minion:
       master:
         host: "localhost"
+      trusted_ca_minions:
+        - ${_param:salt_minion_ca_host}
   reclass:
     storage:
       data_source:
